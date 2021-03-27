@@ -17,7 +17,7 @@ export const MAX_DISCOUNT = 90;
 
 function isTitleValid(title: string): boolean {
   if (typeof title !== "string") return false;
-  return (title.length >= MIN_TITLE && title.length <= MAX_TITLE);
+  return title.length >= MIN_TITLE && title.length <= MAX_TITLE;
 }
 
 function isDescriptionValid(description: string): boolean {
@@ -30,7 +30,7 @@ function isPriceValid(price: string): boolean {
   if (!/^\d+(\.\d{0,2})?$/.test(price)) return false;
   const normalizedPrice = parseFloat(price) * 100;
 
-  return (normalizedPrice >= MIN_PRICE && normalizedPrice <= MAX_PRICE);
+  return normalizedPrice >= MIN_PRICE && normalizedPrice <= MAX_PRICE;
 }
 
 async function isImageUrlValid(url: string): Promise<boolean> {

@@ -3,7 +3,9 @@ import transform from "lodash/transform";
 import isObject from "lodash/isObject";
 import dayjs from "dayjs";
 
-export function getImageDimensionsByUrl(url: string): Promise<{ width: number; height: number; }> {
+export function getImageDimensionsByUrl(
+  url: string
+): Promise<{ width: number; height: number }> {
   return new Promise((resolve, reject) => {
     const imageTag = document.createElement("img");
     imageTag.onload = () => {
