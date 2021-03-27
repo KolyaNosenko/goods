@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ItemForm from "src/components/ItemForm";
 import { NotificationContext } from "src/context/NotificationContext";
 import { InvalidData } from "src/errors";
-import { UpdateItem } from "src/services/items";
+import { UpdateItemDTO } from "src/services/items";
 import { Item } from "src/store/items";
 
 const EditItemContainer = styled.div`
@@ -18,7 +18,7 @@ const EditItemContainer = styled.div`
 export interface Props {
   // TODO move to type
   item: Item;
-  editItem: (item: UpdateItem) => Promise<void>;
+  editItem: (item: UpdateItemDTO) => Promise<void>;
 }
 
 const EditItem = ({ editItem, item }: Props) => {

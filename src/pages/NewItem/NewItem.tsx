@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ItemForm from "src/components/ItemForm";
 import { NotificationContext } from "src/context/NotificationContext";
 import { InvalidData } from "src/errors";
-import { NewItem as NewItemType } from "src/services/items";
+import { NewItemDTO as NewItemType } from "src/services/items";
 
 const NewItemContainer = styled.div`
   padding: 20px;

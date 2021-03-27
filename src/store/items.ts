@@ -2,8 +2,8 @@ import {
   calculateNewPrice,
   convertPrice,
   ItemDTO,
-  NewItem,
-  UpdateItem,
+  NewItemDTO,
+  UpdateItemDTO,
 } from "src/services/items";
 import { createAction, createReducer } from "@reduxjs/toolkit";
 import { StoreState, ThunkedAction } from "./types";
@@ -54,7 +54,7 @@ export type ItemsActions =
   | ReturnType<typeof removeItem>
   | ReturnType<typeof setItems>;
 
-export const doAddItem = (item: NewItem): ThunkedAction => {
+export const doAddItem = (item: NewItemDTO): ThunkedAction => {
   return async function (dispatch, getState) {
     const { itemsService } = getState().services;
     const addedItem = await itemsService.addItem(item);
@@ -72,7 +72,7 @@ export function doRemoveItem(itemId: string): ThunkedAction {
   };
 }
 
-export function doUpdateItem(item: UpdateItem): ThunkedAction {
+export function doUpdateItem(item: UpdateItemDTO): ThunkedAction {
   return async function (dispatch, getState) {
     const { itemsService } = getState().services;
     const updatedItem = await itemsService.updateItem(item);

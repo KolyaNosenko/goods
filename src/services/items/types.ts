@@ -9,8 +9,7 @@ export interface ItemDTO {
   updatedAt: number;
 }
 
-export interface NewItem {
-  id?: string;
+export interface NewItemDTO {
   title: string;
   description: string;
   price: number;
@@ -19,6 +18,6 @@ export interface NewItem {
   discountExpireAt: number;
 }
 
-export interface UpdateItem extends NewItem {
+export interface UpdateItemDTO extends NewItemDTO {
   id: string;
 }

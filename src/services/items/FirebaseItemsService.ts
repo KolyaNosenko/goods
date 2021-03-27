@@ -2,7 +2,7 @@ import { getDifferenceBetweenObjects, objectUrlToBlob } from "src/utils";
 import { validateItem } from "./helpers";
 import { InvalidData } from "src/errors";
 import firebase from "firebase/app";
-import { ItemDTO, NewItem, UpdateItem } from "./types";
+import { ItemDTO, NewItemDTO, UpdateItemDTO } from "./types";
 import { ItemsService } from "./ItemsService";
 
 export class FirebaseItemsService implements ItemsService {
@@ -80,7 +80,7 @@ export class FirebaseItemsService implements ItemsService {
     });
   }
 
-  async addItem(item: NewItem): Promise<ItemDTO> {
+  async addItem(item: NewItemDTO): Promise<ItemDTO> {
     const isValid = await this.isNewItemValid(item);
     // TODO add more custom error
 
@@ -142,7 +142,7 @@ export class FirebaseItemsService implements ItemsService {
     return snapshot.val();
   }
 
-  async updateItem(updatedItem: UpdateItem): Promise<ItemDTO> {
+  async updateItem(updatedItem: UpdateItemDTO): Promise<ItemDTO> {
     const isValid = await this.isNewItemValid(updatedItem);
 
     if (!isValid) throw new InvalidData("Invalid data");
