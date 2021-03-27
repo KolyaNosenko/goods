@@ -1,8 +1,8 @@
-import { isEmailValid, isPasswordValid } from "./UserService";
-import { EMAIL } from "../../tests-utils";
+import { isEmailValid, isPasswordValid } from "./helpers";
+import { EMAIL } from "src/tests-utils";
 
 describe("isEmailValid", () => {
-  test.each([[""], [null], [undefined], [1], ["1232$mail.com"]])(
+  test.each([[""], ["1232$mail.com"]])(
     "When pass invalid, then return false",
     (email) => {
       const result = isEmailValid(email);
@@ -17,7 +17,7 @@ describe("isEmailValid", () => {
 });
 
 describe("isPasswordValid", () => {
-  test.each([[""], [null], [undefined], [1], ["1234"]])(
+  test.each([[""], ["1234"]])(
     "When pass invalid, then return false",
     (password) => {
       const result = isPasswordValid(password);
