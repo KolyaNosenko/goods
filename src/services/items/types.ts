@@ -14,8 +14,8 @@ export interface NewItemDTO {
   description: string;
   price: number;
   image: string;
-  discount: number;
-  discountExpireAt: number;
+  discount?: number;
+  discountExpireAt?: number;
 }
 
 export interface UpdateItemDTO extends NewItemDTO {
