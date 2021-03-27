@@ -1,10 +1,9 @@
-import { ItemDTO } from "../services/items";
-import { ItemsState, UserState } from "../store";
-import { ServicesState } from "../store/services";
+import { ItemDTO } from "src/services/items";
+import { ItemsState, UserState } from "src/store";
 import { TestableItemsService } from "./TestableItemsService";
-import { UserDTO } from "../services/user";
+import { UserDTO } from "src/services/user";
 import { TestableUserService } from "./TestableUserService";
-import { StoreState, ThunkExtraContext } from "../store/types";
+import { StoreState, ThunkExtraContext } from "src/store/types";
 import thunk from "redux-thunk";
 import configureMockStore from "redux-mock-store";
 
@@ -87,21 +86,10 @@ export function getUserStateMock(user: Partial<UserState> = {}): UserState {
   };
 }
 
-export function getServicesMock(
-  services: Partial<ServicesState> = {}
-): ServicesState {
-  return {
-    itemsService: new TestableItemsService(),
-    userService: new TestableUserService(),
-    ...services,
-  };
-}
-
 export function getStoreStateMock(
   storeState: Partial<StoreState> = {}
 ): StoreState {
   return {
-    services: getServicesMock(storeState.services),
     items: getItemsStateMock(storeState.items),
     user: getUserStateMock(storeState.user),
     ...storeState,

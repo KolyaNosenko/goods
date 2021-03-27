@@ -1,6 +1,5 @@
 import { UserState, UserActions } from "./user";
 import { ItemsState, ItemsActions } from "./items";
-import { ServicesState } from "./services";
 import { ThunkAction, ThunkDispatch } from "redux-thunk";
 import { UserService } from "../services/user";
 import { ItemsService } from "../services/items";
@@ -8,7 +7,6 @@ import { ItemsService } from "../services/items";
 export type StoreState = {
   user: UserState;
   items: ItemsState;
-  services: ServicesState;
 };
 
 export type StoreActions = UserActions | ItemsActions;

@@ -1,7 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import reduxLogger from "redux-logger";
 import thunk, { ThunkMiddleware } from "redux-thunk";
-import { createServicesReducer } from "./services";
 import { userReducer } from "./user";
 import {
   addItem,
@@ -33,7 +32,6 @@ function configureStore(userService: UserService, itemsService: ItemsService) {
   }
 
   const combinedReducer = combineReducers({
-    services: createServicesReducer(userService, itemsService),
     user: userReducer,
     items: itemsReducer,
   });
