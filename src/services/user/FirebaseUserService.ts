@@ -1,6 +1,6 @@
 import firebase from "firebase/app";
 import { InvalidData } from "src/errors";
-import { UserInfo, AdditionalUserInfo } from "./types";
+import { UserDTO, UserAdditionalInfoDTO } from "./types";
 import { UserService } from "./UserService";
 
 export function isEmailValid(email: string): boolean {
@@ -21,7 +21,7 @@ export class FirebaseUserService implements UserService {
 
   private async getAdditionalUserData(
     userId: string
-  ): Promise<AdditionalUserInfo> {
+  ): Promise<UserAdditionalInfoDTO> {
     const snapshot = await this.firebaseApp
       .database()
       .ref("users")
@@ -31,7 +31,7 @@ export class FirebaseUserService implements UserService {
     return snapshot.val();
   }
 
-  async login(email: string, password: string): Promise<UserInfo> {
+  async login(email: string, password: string): Promise<UserDTO> {
     // TODO add more custom errors handling
     if (!isEmailValid(email) || !isPasswordValid(password))
       throw new InvalidData("Invalid data");

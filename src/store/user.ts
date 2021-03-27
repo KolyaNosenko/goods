@@ -1,4 +1,4 @@
-import { UserInfo } from "src/services/user";
+import { UserDTO } from "src/services/user";
 import { StoreState, ThunkedAction } from "./types";
 import { createAction, createReducer } from "@reduxjs/toolkit";
 
@@ -10,7 +10,7 @@ export const getUser = (state: StoreState) => {
   return state.user;
 };
 
-export const userLoggedIn = createAction<UserInfo>("user/login");
+export const userLoggedIn = createAction<UserDTO>("user/login");
 
 export const userLoggedOut = createAction("user/logout");
 
@@ -34,7 +34,7 @@ export function doLogoutUser(): ThunkedAction {
   };
 }
 
-export type UserState = UserInfo & {
+export type UserState = UserDTO & {
   isAuthenticated: boolean;
 };
 

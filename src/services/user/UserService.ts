@@ -1,6 +1,6 @@
-import { UserInfo } from "./types";
+import { UserDTO } from "./types";
 
 export interface UserService {
-  login(email: string, password: string): Promise<UserInfo>;
+  login(email: string, password: string): Promise<UserDTO>;
   logout(): Promise<void>;
 }

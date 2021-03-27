@@ -1,8 +1,8 @@
-export interface AdditionalUserInfo {
+export interface UserAdditionalInfoDTO {
   isAdmin: boolean;
 }
 
-export interface UserInfo extends AdditionalUserInfo {
+export interface UserDTO extends UserAdditionalInfoDTO {
   id: string;
   email: string;
 }
