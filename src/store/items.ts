@@ -4,7 +4,7 @@ import {
   ItemDTO,
   NewItem,
   UpdateItem,
-} from "../services/items";
+} from "src/services/items";
 import { createAction, createReducer } from "@reduxjs/toolkit";
 import { StoreState, ThunkedAction } from "./types";
 

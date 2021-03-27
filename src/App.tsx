@@ -1,16 +1,16 @@
 import { HashRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
-import Login from "./pages/Login";
-import Home from "./pages/Home";
-import EditItem from "./pages/EditItem";
-import NotFound from "./pages/NotFound";
-import NewItem from "./pages/NewItem";
+import Login from "src/pages/Login";
+import Home from "src/pages/Home";
+import EditItem from "src/pages/EditItem";
+import NotFound from "src/pages/NotFound";
+import NewItem from "src/pages/NewItem";
 import { useInitializeApp } from "./App.hooks";
-import Spinner from "./components/Spinner";
-import AdminRoute from "./components/AdminRoute";
-import Header from "./components/Header";
+import Spinner from "src/components/Spinner";
+import AdminRoute from "src/components/AdminRoute";
+import Header from "src/components/Header";
 import styled from "styled-components";
-import { NotificationProvider } from "./context/NotificationContext";
+import { NotificationProvider } from "src/context/NotificationContext";
 
 const AppContainer = styled.div`
   min-height: 100vh;

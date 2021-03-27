@@ -18,7 +18,7 @@ import {
   CardTitle,
 } from "./styled";
 import { formatDate } from "../../utils";
-import { Item } from "../../store";
+import { Item } from "src/store";
 
 export interface Props extends Item {
   onEdit: () => void;

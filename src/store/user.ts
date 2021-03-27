@@ -1,4 +1,4 @@
-import { UserInfo } from "../services/user";
+import { UserInfo } from "src/services/user";
 import { StoreState, ThunkedAction } from "./types";
 import { createAction, createReducer } from "@reduxjs/toolkit";
 

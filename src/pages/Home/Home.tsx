@@ -9,10 +9,10 @@ import {
   HomeToolbarAddIcon,
   HomeToolbarButton,
 } from "./styled";
-import ItemCard from "../../components/ItemCard";
+import ItemCard from "src/components/ItemCard";
 // TODO move to context
-import { NotificationContext } from "../../context/NotificationContext";
-import { Item } from "../../store";
+import { NotificationContext } from "src/context/NotificationContext";
+import { Item } from "src/store";
 
 export interface Props {
   // TODO move to separate type

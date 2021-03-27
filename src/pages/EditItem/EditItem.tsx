@@ -1,10 +1,10 @@
 import { useContext } from "react";
 import styled from "styled-components";
-import ItemForm from "../../components/ItemForm";
-import { NotificationContext } from "../../context/NotificationContext";
-import { InvalidData } from "../../errors";
-import { UpdateItem } from "../../services/items";
-import { Item } from "../../store/items";
+import ItemForm from "src/components/ItemForm";
+import { NotificationContext } from "src/context/NotificationContext";
+import { InvalidData } from "src/errors";
+import { UpdateItem } from "src/services/items";
+import { Item } from "src/store/items";
 
 const EditItemContainer = styled.div`
   padding: 20px;

@@ -1,6 +1,6 @@
-import { getDifferenceBetweenObjects, objectUrlToBlob } from "../../utils";
+import { getDifferenceBetweenObjects, objectUrlToBlob } from "src/utils";
 import { validateItem } from "./helpers";
-import { InvalidData } from "../../errors";
+import { InvalidData } from "src/errors";
 import firebase from "firebase/app";
 import { ItemDTO, NewItem, UpdateItem } from "./types";
 import { ItemsService } from "./ItemsService";

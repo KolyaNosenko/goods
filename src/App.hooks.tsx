@@ -3,9 +3,9 @@ import firebase from "firebase/app";
 import "firebase/database";
 import "firebase/auth";
 import "firebase/storage";
-import { AppStore, initializeStore } from "./store";
-import { FirebaseUserService } from "./services/user";
-import { FirebaseItemsService } from "./services/items";
+import { AppStore, initializeStore } from "src/store";
+import { FirebaseUserService } from "src/services/user";
+import { FirebaseItemsService } from "src/services/items";
 
 export function useInitializeApp() {
   // TODO handle errors

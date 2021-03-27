@@ -1,5 +1,5 @@
 import firebase from "firebase/app";
-import { InvalidData } from "../../errors";
+import { InvalidData } from "src/errors";
 import { UserInfo, AdditionalUserInfo } from "./types";
 import { UserService } from "./UserService";
 

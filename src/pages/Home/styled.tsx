@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { PrimaryButton } from "../../components/Button";
-import { ReactComponent as AddIcon } from "../../assets/icons/add.svg";
+import { PrimaryButton } from "src/components/Button";
+import { ReactComponent as AddIcon } from "src/assets/icons/add.svg";
 
 export const HomeContainer = styled.div`
   flex-grow: 1;

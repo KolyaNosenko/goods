@@ -10,9 +10,9 @@ import {
   setItems,
   updateItem,
 } from "./items";
-import { isDevelopmentMode } from "../utils";
-import { UserService } from "../services/user";
-import { ItemsService } from "../services/items";
+import { isDevelopmentMode } from "src/utils";
+import { UserService } from "src/services/user";
+import { ItemsService } from "src/services/items";
 import { StoreState, StoreActions } from "./types";
 
 export * from "./user";

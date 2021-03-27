@@ -1,4 +1,4 @@
-import { getImageDimensionsByUrl } from "../../utils";
+import { getImageDimensionsByUrl } from "src/utils";
 // TODO change this
 // @ts-ignore
 import Dinero from "dinero.js";

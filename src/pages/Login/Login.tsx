@@ -3,8 +3,8 @@ import { useHistory } from "react-router-dom";
 
 import LoginForm from "./LoginForm";
 import { LoginContainer } from "./styled";
-import { NotificationContext } from "../../context/NotificationContext";
-import { InvalidData } from "../../errors";
+import { NotificationContext } from "src/context/NotificationContext";
+import { InvalidData } from "src/errors";
 // TODO add '@' alias
 
 export interface Props {

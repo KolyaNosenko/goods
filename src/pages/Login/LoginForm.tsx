@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 import PropTypes from "prop-types";
 import { useFormik } from "formik";
-import FormControlInput from "../../components/FormControlInput";
-import FormControlText from "../../components/FormControlText";
-import FormControl from "../../components/FormControl";
-import FormControlLabel from "../../components/FormControlLabel";
+import FormControlInput from "src/components/FormControlInput";
+import FormControlText from "src/components/FormControlText";
+import FormControl from "src/components/FormControl";
+import FormControlLabel from "src/components/FormControlLabel";
 import {
   Form,
   FormBody,
@@ -13,9 +13,9 @@ import {
   FormTitle,
 } from "./styled";
 // TODO add alias
-import { isEmailValid, isPasswordValid } from "../../services/user";
-import { PrimaryButton } from "../../components/Button";
-import Spinner from "../../components/Spinner";
+import { isEmailValid, isPasswordValid } from "src/services/user";
+import { PrimaryButton } from "src/components/Button";
+import Spinner from "src/components/Spinner";
 
 interface UserData {
   email: string;

@@ -1,5 +1,5 @@
-import { UserService } from "../services/user";
-import { ItemsService } from "../services/items";
+import { UserService } from "src/services/user";
+import { ItemsService } from "src/services/items";
 
 export type ServicesState = {
   userService: UserService;

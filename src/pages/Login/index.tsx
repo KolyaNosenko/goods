@@ -1,7 +1,7 @@
 import Login from "./Login";
-import { doLoginUser } from "../../store";
+import { doLoginUser } from "src/store";
 import { connect } from "react-redux";
-import { StoreDispatch } from "../../store/types";
+import { StoreDispatch } from "src/store/types";
 
 const mapDispatchToProps = (dispatch: StoreDispatch) => {
   return {

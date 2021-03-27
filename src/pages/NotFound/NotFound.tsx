@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ReactComponent as OopsIcon } from "../../assets/icons/oops.svg";
+import { ReactComponent as OopsIcon } from "src/assets/icons/oops.svg";
 
 const NotFoundContainer = styled.div`
   flex-grow: 1;
