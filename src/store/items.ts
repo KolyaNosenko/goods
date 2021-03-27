@@ -1,14 +1,14 @@
 import {
   calculateNewPrice,
   convertPrice,
-  Item,
+  ItemDTO,
   NewItem,
   UpdateItem,
 } from "../services/items";
 import { createAction, createReducer } from "@reduxjs/toolkit";
 import { StoreState, ThunkedAction } from "./types";
 
-export interface NormalizedItem extends Omit<Item, "price"> {
+export interface NormalizedItem extends Omit<ItemDTO, "price"> {
   price: string;
   newPrice: string;
 }
@@ -34,9 +34,9 @@ export const getSortedItems = (state: StoreState) => {
   return items.sort((a, b) => b.updatedAt - a.updatedAt);
 };
 
-export const addItem = createAction<Item>("items/ADD_ITEM");
+export const addItem = createAction<ItemDTO>("items/ADD_ITEM");
 
-export const updateItem = createAction<Partial<Item>>("items/UPDATE_ITEM");
+export const updateItem = createAction<Partial<ItemDTO>>("items/UPDATE_ITEM");
 
 export const removeItem = createAction("items/REMOVE_ITEM", (id) => {
   return {
@@ -46,7 +46,7 @@ export const removeItem = createAction("items/REMOVE_ITEM", (id) => {
   };
 });
 
-export const setItems = createAction<Array<Item>>("items/SET_ITEMS");
+export const setItems = createAction<Array<ItemDTO>>("items/SET_ITEMS");
 
 export type ItemsActions =
   | ReturnType<typeof addItem>
@@ -82,7 +82,7 @@ export function doUpdateItem(item: UpdateItem): ThunkedAction {
 }
 
 export type ItemsState = {
-  [id: string]: Item;
+  [id: string]: ItemDTO;
 };
 
 const initialState: ItemsState = {};

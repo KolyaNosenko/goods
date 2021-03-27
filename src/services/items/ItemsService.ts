@@ -2,12 +2,12 @@ import { getDifferenceBetweenObjects, objectUrlToBlob } from "../../utils";
 import { validateItem } from "./helpers";
 import { InvalidData } from "../../errors";
 import firebase from "firebase/app";
-import { Item, NewItem, UpdateItem } from "./types";
+import { ItemDTO, NewItem, UpdateItem } from "./types";
 
 export class ItemsService {
   private firebaseApp: firebase.app.App;
-  private updateItemListeners: Array<(item: Item) => void>;
-  private addItemListeners: Array<(item: Item) => void>;
+  private updateItemListeners: Array<(item: ItemDTO) => void>;
+  private addItemListeners: Array<(item: ItemDTO) => void>;
   private removeItemListeners: Array<(id: string) => void>;
 
   constructor(firebaseApp: firebase.app.App) {
@@ -29,11 +29,11 @@ export class ItemsService {
       .on("child_removed", this.notifyRemoveItemListeners.bind(this));
   }
 
-  onItemAdded(callback: (item: Item) => void) {
+  onItemAdded(callback: (item: ItemDTO) => void) {
     this.addItemListeners.push(callback);
   }
 
-  onItemUpdated(callback: (item: Item) => void) {
+  onItemUpdated(callback: (item: ItemDTO) => void) {
     this.updateItemListeners.push(callback);
   }
 
@@ -47,7 +47,7 @@ export class ItemsService {
       return;
     }
     // TODO add item
-    const item = snapshotData.val() as Item;
+    const item = snapshotData.val() as ItemDTO;
     this.addItemListeners.forEach((listener) => {
       listener(item);
     });
@@ -75,7 +75,7 @@ export class ItemsService {
     });
   }
 
-  async addItem(item: NewItem): Promise<Item> {
+  async addItem(item: NewItem): Promise<ItemDTO> {
     const isValid = await this.isNewItemValid(item);
     // TODO add more custom error
 
@@ -90,7 +90,7 @@ export class ItemsService {
     const imgFile = await objectUrlToBlob(item.image);
     const imgUrl = await this.uploadImage("images/" + itemId, imgFile);
 
-    const finalItem: Item = {
+    const finalItem: ItemDTO = {
       ...item,
       id: itemId,
       image: imgUrl,
@@ -100,7 +100,7 @@ export class ItemsService {
     return finalItem;
   }
 
-  async getItems(): Promise<Array<Item>> {
+  async getItems(): Promise<Array<ItemDTO>> {
     const snapshot = await this.firebaseApp.database().ref("items").get();
     if (!snapshot.val()) return [];
     return Object.values(snapshot.val());
@@ -125,7 +125,7 @@ export class ItemsService {
     }
   }
 
-  async getItem(itemId: string): Promise<Item> {
+  async getItem(itemId: string): Promise<ItemDTO> {
     const snapshot = await this.firebaseApp
       .database()
       .ref("items")
@@ -141,7 +141,10 @@ export class ItemsService {
 
     const existingItem = await this.getItem(updatedItem.id);
     // TODO add clear type
-    const diff = getDifferenceBetweenObjects(updatedItem, existingItem) as Item;
+    const diff = getDifferenceBetweenObjects(
+      updatedItem,
+      existingItem
+    ) as ItemDTO;
 
     if (!Object.keys(diff).length) return updatedItem;
 

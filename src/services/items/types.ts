@@ -1,4 +1,4 @@
-export interface Item {
+export interface ItemDTO {
   description: string;
   discount?: number;
   discountExpireAt?: number;
