@@ -4,7 +4,7 @@ import "firebase/database";
 import "firebase/auth";
 import "firebase/storage";
 import { AppStore, initializeStore } from "./store";
-import { UserService } from "./services/user";
+import { FirebaseUserService } from "./services/user";
 import { FirebaseItemsService } from "./services/items";
 
 export function useInitializeApp() {
@@ -31,7 +31,7 @@ export function useInitializeApp() {
       .auth()
       .setPersistence(firebase.auth.Auth.Persistence.NONE);
 
-    const userService = new UserService(firebaseApp);
+    const userService = new FirebaseUserService(firebaseApp);
     const itemsService = new FirebaseItemsService(firebaseApp);
     const store = await initializeStore(userService, itemsService);
     setAppStore(store);
