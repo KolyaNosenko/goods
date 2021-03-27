@@ -2,6 +2,8 @@ import { UserState, UserActions } from "./user";
 import { ItemsState, ItemsActions } from "./items";
 import { ServicesState } from "./services";
 import { ThunkAction, ThunkDispatch } from "redux-thunk";
+import { UserService } from "../services/user";
+import { ItemsService } from "../services/items";
 
 export type StoreState = {
   user: UserState;
@@ -11,11 +13,20 @@ export type StoreState = {
 
 export type StoreActions = UserActions | ItemsActions;
 
+export type ThunkExtraContext = {
+  userService: UserService;
+  itemsService: ItemsService;
+};
+
 export type ThunkedAction<T = void> = ThunkAction<
   T,
   StoreState,
-  unknown,
+  ThunkExtraContext,
   StoreActions
 >;
 
-export type StoreDispatch = ThunkDispatch<StoreState, unknown, StoreActions>;
+export type StoreDispatch = ThunkDispatch<
+  StoreState,
+  ThunkExtraContext,
+  StoreActions
+>;

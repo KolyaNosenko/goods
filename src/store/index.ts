@@ -13,28 +13,32 @@ import {
 import { isDevelopmentMode } from "src/utils";
 import { UserService } from "src/services/user";
 import { ItemsService } from "src/services/items";
-import { StoreState, StoreActions } from "./types";
+import { StoreState, StoreActions, ThunkExtraContext } from "./types";
 
 export * from "./user";
 export * from "./items";
 
-function getMiddlewares() {
-  const middlewares = [thunk as ThunkMiddleware<StoreState, StoreActions>];
+function configureStore(userService: UserService, itemsService: ItemsService) {
+  const thunkExtraContext = { userService, itemsService };
+  const middlewares = [
+    thunk.withExtraArgument(thunkExtraContext) as ThunkMiddleware<
+      StoreState,
+      StoreActions,
+      ThunkExtraContext
+    >,
+  ];
 
   if (isDevelopmentMode()) {
     middlewares.push(reduxLogger);
   }
-  return middlewares;
-}
 
-function configureStore(userService: UserService, itemsService: ItemsService) {
   const combinedReducer = combineReducers({
     services: createServicesReducer(userService, itemsService),
     user: userReducer,
     items: itemsReducer,
   });
 
-  return createStore(combinedReducer, applyMiddleware(...getMiddlewares()));
+  return createStore(combinedReducer, applyMiddleware(...middlewares));
 }
 
 export type AppStore = ReturnType<typeof configureStore>;

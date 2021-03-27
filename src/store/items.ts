@@ -55,8 +55,8 @@ export type ItemsActions =
   | ReturnType<typeof setItems>;
 
 export const doAddItem = (item: NewItemDTO): ThunkedAction => {
-  return async function (dispatch, getState) {
-    const { itemsService } = getState().services;
+  return async function (dispatch, getState, context) {
+    const { itemsService } = context;
     const addedItem = await itemsService.addItem(item);
 
     return dispatch(addItem(addedItem));
@@ -64,8 +64,8 @@ export const doAddItem = (item: NewItemDTO): ThunkedAction => {
 };
 
 export function doRemoveItem(itemId: string): ThunkedAction {
-  return async function (dispatch, getState) {
-    const { itemsService } = getState().services;
+  return async function (dispatch, getState, context) {
+    const { itemsService } = context;
     await itemsService.removeItem(itemId);
 
     return dispatch(removeItem(itemId));
@@ -73,8 +73,8 @@ export function doRemoveItem(itemId: string): ThunkedAction {
 }
 
 export function doUpdateItem(item: UpdateItemDTO): ThunkedAction {
-  return async function (dispatch, getState) {
-    const { itemsService } = getState().services;
+  return async function (dispatch, getState, context) {
+    const { itemsService } = context;
     const updatedItem = await itemsService.updateItem(item);
 
     return dispatch(updateItem(updatedItem));

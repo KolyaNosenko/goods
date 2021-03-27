@@ -1,4 +1,3 @@
-import configureMockStore from "redux-mock-store";
 import {
   setItems,
   addItem,
@@ -15,11 +14,9 @@ import {
   getItemSample,
   TestableItemsService,
   getStoreStateMock,
+  createStore,
+  createStoreContext,
 } from "src/tests-utils";
-import thunk from "redux-thunk";
-
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
 
 describe("Selectors", () => {
   describe("getItem", () => {
@@ -122,7 +119,9 @@ describe("Reducer", () => {
 describe("Action creators", () => {
   test("When call doAddItem, then pass service call result to particular action", async () => {
     const itemsService = new TestableItemsService();
-    const store = mockStore({ services: { itemsService } });
+    const store = createStore({
+      context: createStoreContext({ itemsService }),
+    });
     const item = getItemSample();
     jest.spyOn(itemsService, "addItem").mockResolvedValueOnce(item);
     const expectedActions = [addItem(item)];
@@ -134,9 +133,7 @@ describe("Action creators", () => {
 
   test("When call doRemoveItem, then call particular action", async () => {
     const itemId = "11";
-    const store = mockStore({
-      services: { itemsService: new TestableItemsService() },
-    });
+    const store = createStore();
     const expectedActions = [removeItem(itemId)];
 
     await store.dispatch(doRemoveItem(itemId));
@@ -146,7 +143,9 @@ describe("Action creators", () => {
 
   test("When call doUpdateItem, then pass service call result to particular action", async () => {
     const itemsService = new TestableItemsService();
-    const store = mockStore({ services: { itemsService } });
+    const store = createStore({
+      context: createStoreContext({ itemsService }),
+    });
     const item = getItemSample();
     jest.spyOn(itemsService, "updateItem").mockResolvedValueOnce(item);
     const expectedActions = [updateItem(item)];

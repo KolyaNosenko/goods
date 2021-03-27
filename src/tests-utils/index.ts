@@ -4,7 +4,9 @@ import { ServicesState } from "../store/services";
 import { TestableItemsService } from "./TestableItemsService";
 import { UserDTO } from "../services/user";
 import { TestableUserService } from "./TestableUserService";
-import { StoreState } from "../store/types";
+import { StoreState, ThunkExtraContext } from "../store/types";
+import thunk from "redux-thunk";
+import configureMockStore from "redux-mock-store";
 
 export const EMAIL = "email@mailto.com";
 
@@ -95,11 +97,36 @@ export function getServicesMock(
   };
 }
 
-export function getStoreStateMock(storeState: Partial<StoreState>): StoreState {
+export function getStoreStateMock(
+  storeState: Partial<StoreState> = {}
+): StoreState {
   return {
     services: getServicesMock(storeState.services),
     items: getItemsStateMock(storeState.items),
     user: getUserStateMock(storeState.user),
     ...storeState,
   };
+}
+
+export function createStoreContext(
+  context: Partial<ThunkExtraContext> = {}
+): ThunkExtraContext {
+  return {
+    itemsService: new TestableItemsService(),
+    userService: new TestableUserService(),
+    ...context,
+  };
+}
+
+export function createStore(
+  options: Partial<{
+    state: Partial<StoreState>;
+    context: Partial<ThunkExtraContext>;
+  }> = {}
+) {
+  const storeContext = createStoreContext(options.context);
+  const middlewares = [thunk.withExtraArgument(storeContext)];
+  const mockStore = configureMockStore(middlewares);
+
+  return mockStore(getStoreStateMock(options.state));
 }

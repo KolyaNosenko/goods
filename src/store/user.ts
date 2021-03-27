@@ -19,16 +19,16 @@ export type UserActions =
   | ReturnType<typeof userLoggedOut>;
 
 export function doLoginUser(email: string, password: string): ThunkedAction {
-  return async function (dispatch, getState) {
-    const { userService } = getState().services;
+  return async function (dispatch, getState, context) {
+    const { userService } = context;
     const userData = await userService.login(email, password);
     dispatch(userLoggedIn(userData));
   };
 }
 
 export function doLogoutUser(): ThunkedAction {
-  return async function (dispatch, getState) {
-    const { userService } = getState().services;
+  return async function (dispatch, getState, context) {
+    const { userService } = context;
     await userService.logout();
     dispatch(userLoggedOut());
   };
