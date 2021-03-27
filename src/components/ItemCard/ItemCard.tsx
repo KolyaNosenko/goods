@@ -18,9 +18,9 @@ import {
   CardTitle,
 } from "./styled";
 import { formatDate } from "../../utils";
-import { NormalizedItem } from "../../store";
+import { Item } from "../../store";
 
-export interface Props extends NormalizedItem {
+export interface Props extends Item {
   onEdit: () => void;
   onRemove: () => void;
   isActionsVisible?: boolean;

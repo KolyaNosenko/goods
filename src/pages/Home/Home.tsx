@@ -12,11 +12,11 @@ import {
 import ItemCard from "../../components/ItemCard";
 // TODO move to context
 import { NotificationContext } from "../../context/NotificationContext";
-import { NormalizedItem } from "../../store";
+import { Item } from "../../store";
 
 export interface Props {
   // TODO move to separate type
-  items: Array<NormalizedItem>;
+  items: Array<Item>;
   isAdmin?: boolean;
   removeItem: (id: string) => Promise<void>;
   editItem: (id: string) => void;

@@ -4,7 +4,7 @@ import ItemForm from "../../components/ItemForm";
 import { NotificationContext } from "../../context/NotificationContext";
 import { InvalidData } from "../../errors";
 import { UpdateItem } from "../../services/items";
-import { NormalizedItem } from "../../store/items";
+import { Item } from "../../store/items";
 
 const EditItemContainer = styled.div`
   padding: 20px;
@@ -17,7 +17,7 @@ const EditItemContainer = styled.div`
 
 export interface Props {
   // TODO move to type
-  item: NormalizedItem;
+  item: Item;
   editItem: (item: UpdateItem) => Promise<void>;
 }
 

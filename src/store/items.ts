@@ -8,12 +8,12 @@ import {
 import { createAction, createReducer } from "@reduxjs/toolkit";
 import { StoreState, ThunkedAction } from "./types";
 
-export interface NormalizedItem extends Omit<ItemDTO, "price"> {
+export interface Item extends Omit<ItemDTO, "price"> {
   price: string;
   newPrice: string;
 }
 
-export const getItem = (state: StoreState, itemId: string): NormalizedItem => {
+export const getItem = (state: StoreState, itemId: string): Item => {
   const item = state.items[itemId];
 
   return {
