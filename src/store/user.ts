@@ -38,7 +38,7 @@ export type UserState = UserDTO & {
   isAuthenticated: boolean;
 };
 
-const initialState: UserState = {
+export const initialState: UserState = {
   id: "",
   email: "",
   isAdmin: false,
