@@ -5,7 +5,7 @@ import "firebase/auth";
 import "firebase/storage";
 import { AppStore, initializeStore } from "./store";
 import { UserService } from "./services/user";
-import { ItemsService } from "./services/items";
+import { FirebaseItemsService } from "./services/items";
 
 export function useInitializeApp() {
   // TODO handle errors
@@ -32,7 +32,7 @@ export function useInitializeApp() {
       .setPersistence(firebase.auth.Auth.Persistence.NONE);
 
     const userService = new UserService(firebaseApp);
-    const itemsService = new ItemsService(firebaseApp);
+    const itemsService = new FirebaseItemsService(firebaseApp);
     const store = await initializeStore(userService, itemsService);
     setAppStore(store);
     setIsAppInitialized(true);
