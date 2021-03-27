@@ -2,8 +2,13 @@ import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 
 import Home from "./Home";
-import { doRemoveItem, getSortedItems, isUserAdmin } from "src/store";
-import { StoreDispatch, StoreState } from "src/store/types";
+import {
+  doRemoveItem,
+  getSortedItems,
+  isUserAdmin,
+  StoreDispatch,
+  StoreState,
+} from "src/store";
 
 const mapStateToProps = (state: StoreState) => ({
   items: getSortedItems(state),

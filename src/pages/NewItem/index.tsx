@@ -2,12 +2,12 @@ import { connect } from "react-redux";
 import { doAddItem } from "src/store";
 import NewItem from "./NewItem";
 // TODO fix this
-import { NewItemDTO as NewItemType } from "src/services/items";
-import { StoreDispatch } from "src/store/types";
+import { NewItemDTO } from "src/services/items";
+import { StoreDispatch } from "src/store";
 
 const mapDispatchToProps = (dispatch: StoreDispatch) => {
   return {
-    addItem: async (item: NewItemType) => dispatch(doAddItem(item)),
+    addItem: async (item: NewItemDTO) => dispatch(doAddItem(item)),
   };
 };
 

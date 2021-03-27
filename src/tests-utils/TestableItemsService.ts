@@ -4,7 +4,7 @@ import {
   NewItemDTO,
   UpdateItemDTO,
 } from "src/services/items";
-import { getItemDTO } from "./index";
+import { getItemDTO } from "./services";
 
 export class TestableItemsService implements ItemsService {
   addItem(item: NewItemDTO): Promise<ItemDTO> {

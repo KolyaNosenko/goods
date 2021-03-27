@@ -2,8 +2,7 @@ import { connect } from "react-redux";
 import { RouteComponentProps, withRouter } from "react-router-dom";
 
 import EditItem from "./EditItem";
-import { doUpdateItem, getItem } from "src/store";
-import { StoreDispatch, StoreState } from "src/store/types";
+import { doUpdateItem, getItem, StoreDispatch, StoreState } from "src/store";
 import { UpdateItemDTO } from "src/services/items";
 
 const mapStateToProps = (

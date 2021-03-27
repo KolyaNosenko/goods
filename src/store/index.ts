@@ -16,6 +16,7 @@ import { StoreState, StoreActions, ThunkExtraContext } from "./types";
 
 export * from "./user";
 export * from "./items";
+export * from "./types";
 
 function configureStore(userService: UserService, itemsService: ItemsService) {
   const thunkExtraContext = { userService, itemsService };
