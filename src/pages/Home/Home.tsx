@@ -42,11 +42,6 @@ const Home = ({
     }
   };
 
-  const onEdit = (id: string) => {
-    // TODO pass only id
-    editItem(id);
-  };
-
   return (
     <HomeContainer>
       {isAdmin && (
@@ -69,7 +64,7 @@ const Home = ({
             <ItemCard
               {...item}
               isActionsVisible={isAdmin}
-              onEdit={() => onEdit(item.id)}
+              onEdit={() => editItem(item.id)}
               onRemove={() => onRemove(item.id)}
             />
           </HomeListItem>
