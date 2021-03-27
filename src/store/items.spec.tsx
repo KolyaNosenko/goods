@@ -77,7 +77,7 @@ describe("Selectors", () => {
 });
 
 describe("Reducer", () => {
-  test("When SET_ITEMS call, then set items map to state", () => {
+  test("When call setItems, then set items map to state", () => {
     const item1 = getItemSample();
     const item2 = getItemSample();
     const items = [item1, item2];
@@ -90,7 +90,7 @@ describe("Reducer", () => {
     expect(result[item2.id]).toEqual(item2);
   });
 
-  test("When ADD_ITEM, then add new item", () => {
+  test("When call addItem, then add new item to state", () => {
     const item = getItemSample();
     const action = addItem(item);
 
@@ -99,7 +99,7 @@ describe("Reducer", () => {
     expect(result[item.id]).toEqual(item);
   });
 
-  test("When UPDATE_ITEM, then update exist item", () => {
+  test("When call updateItem, then update exist item", () => {
     const item = getItemSample({ price: 10 });
     const newPrice = 20;
     const action = updateItem({ ...item, price: newPrice });
@@ -109,7 +109,7 @@ describe("Reducer", () => {
     expect(result[item.id].price).toBe(newPrice);
   });
 
-  test("When REMOVE_ITEM, then remove existing item", () => {
+  test("When call removeItem, then remove existing item", () => {
     const item = getItemSample();
     const action = removeItem(item.id);
 

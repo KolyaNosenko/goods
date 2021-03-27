@@ -90,29 +90,19 @@ const initialState: ItemsState = {};
 export const itemsReducer = createReducer(initialState, (builder) => {
   builder
     .addCase(addItem, (state, { payload }) => {
-      return {
-        ...state,
-        [payload.id]: {
-          ...state[payload.id],
-          ...payload,
-        },
-      };
+      state[payload.id] = payload;
     })
     .addCase(updateItem, (state, { payload }) => {
       // TODO think about this
-      if (!payload.id) return state;
+      if (!payload.id || !state[payload.id]) return state;
 
-      return {
-        ...state,
-        [payload.id]: {
-          ...state[payload.id],
-          ...payload,
-        },
+      state[payload.id] = {
+        ...state[payload.id],
+        ...payload,
       };
     })
     .addCase(removeItem, (state, { payload }) => {
-      const { [payload.id]: removedItem, ...newState } = state;
-      return newState;
+      delete state[payload.id];
     })
     .addCase(setItems, (state, { payload }) => {
       return payload.reduce((acc, item) => ({ ...acc, [item.id]: item }), {});
