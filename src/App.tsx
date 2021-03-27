@@ -1,4 +1,4 @@
-import { HashRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import Login from "src/pages/Login";
 import Home from "src/pages/Home";
@@ -50,7 +50,7 @@ function App() {
     <AppContainer>
       <NotificationProvider>
         <Provider store={appStore}>
-          <HashRouter>
+          <BrowserRouter>
             <Header />
             {/*TODO add lazy load*/}
             <Switch>
@@ -70,7 +70,7 @@ function App() {
                 <NotFound />
               </Route>
             </Switch>
-          </HashRouter>
+          </BrowserRouter>
         </Provider>
       </NotificationProvider>
     </AppContainer>
