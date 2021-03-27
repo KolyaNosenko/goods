@@ -30,7 +30,7 @@ const Home = ({
   addItem,
   isAdmin,
 }: Props) => {
-  const { notify } = useContext(NotificationContext);
+  const notify = useContext(NotificationContext);
   const onRemove = async (id: string) => {
     // TODO add errors handling
     try {

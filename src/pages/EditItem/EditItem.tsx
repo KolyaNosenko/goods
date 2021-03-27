@@ -22,7 +22,7 @@ export interface Props {
 }
 
 const EditItem = ({ editItem, item }: Props) => {
-  const { notify } = useContext(NotificationContext);
+  const notify = useContext(NotificationContext);
   // TODO change this
   const onSubmit = async (editedItem: any) => {
     try {

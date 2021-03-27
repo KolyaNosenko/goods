@@ -13,7 +13,7 @@ export interface Props {
 
 const Login = ({ loginUser }: Props) => {
   const history = useHistory();
-  const { notify } = useContext(NotificationContext);
+  const notify = useContext(NotificationContext);
 
   const onLoginFormSubmit = async (userData: {
     email: string;

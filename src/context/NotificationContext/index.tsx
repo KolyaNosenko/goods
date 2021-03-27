@@ -1,2 +1,2 @@
-export { default as NotificationProvider } from "./NotificationProvider";
-export { default as NotificationContext } from "./NotificationContext";
+export * from "./NotificationProvider";
+export * from "./NotificationContext";

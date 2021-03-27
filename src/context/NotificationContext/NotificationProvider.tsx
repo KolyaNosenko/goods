@@ -2,23 +2,17 @@ import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import NotificationContext from "./NotificationContext";
+import { NotificationContext } from "./NotificationContext";
 
 export interface Props {
   children?: React.ReactNode;
 }
 
-const NotificationProvider = ({ children }: Props) => {
-  const notify = toast;
-
-  const contextValue = { notify };
-
+export const NotificationProvider = ({ children }: Props) => {
   return (
-    <NotificationContext.Provider value={contextValue}>
+    <NotificationContext.Provider value={toast}>
       <ToastContainer />
       {children}
     </NotificationContext.Provider>
   );
 };
-
-export default NotificationProvider;
