@@ -12,7 +12,6 @@ import {
   FormSubmitWrapper,
   FormTitle,
 } from "./styled";
-// TODO add alias
 import { isEmailValid, isPasswordValid } from "src/services/user";
 import { PrimaryButton } from "src/components/Button";
 import Spinner from "src/components/Spinner";

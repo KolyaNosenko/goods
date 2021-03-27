@@ -5,7 +5,6 @@ import LoginForm from "./LoginForm";
 import { LoginContainer } from "./styled";
 import { NotificationContext } from "src/context/NotificationContext";
 import { InvalidData } from "src/errors";
-// TODO add '@' alias
 
 export interface Props {
   loginUser: (userData: { email: string; password: string }) => Promise<void>;
