@@ -1,8 +1,8 @@
 import { connect } from "react-redux";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import Header from "./Header";
-import { doLogoutUser, getUser } from "../../store";
-import { StoreDispatch, StoreState } from "../../store/types";
+import { doLogoutUser, getUser } from "src/store";
+import { StoreDispatch, StoreState } from "src/store/types";
 
 const mapStateToProps = (state: StoreState, props: RouteComponentProps) => ({
   user: getUser(state),

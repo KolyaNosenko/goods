@@ -1,8 +1,8 @@
 import styled from "styled-components";
-import { ReactComponent as ShopIcon } from "../../assets/icons/shop.svg";
-import { ReactComponent as LoginIcon } from "../../assets/icons/login.svg";
-import { ReactComponent as UserIcon } from "../../assets/icons/user.svg";
-import { ReactComponent as LogoutIcon } from "../../assets/icons/logout.svg";
+import { ReactComponent as ShopIcon } from "src/assets/icons/shop.svg";
+import { ReactComponent as LoginIcon } from "src/assets/icons/login.svg";
+import { ReactComponent as UserIcon } from "src/assets/icons/user.svg";
+import { ReactComponent as LogoutIcon } from "src/assets/icons/logout.svg";
 
 export const HeaderContainer = styled.div`
   flex-grow: 0;

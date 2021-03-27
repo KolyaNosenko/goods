@@ -1,6 +1,6 @@
 import styled from "styled-components";
-import { ReactComponent as RemoveIcon } from "../../assets/icons/remove.svg";
-import { ReactComponent as EditIcon } from "../../assets/icons/edit.svg";
+import { ReactComponent as RemoveIcon } from "src/assets/icons/remove.svg";
+import { ReactComponent as EditIcon } from "src/assets/icons/edit.svg";
 import { PrimaryButton } from "../Button";
 
 export const CardContainer = styled.div`

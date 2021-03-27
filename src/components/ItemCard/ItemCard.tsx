@@ -17,7 +17,7 @@ import {
   CardRemoveIcon,
   CardTitle,
 } from "./styled";
-import { formatDate } from "../../utils";
+import { formatDate } from "src/utils";
 import { Item } from "src/store";
 
 export interface Props extends Item {
