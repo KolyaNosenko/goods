@@ -38,7 +38,7 @@ export const addItem = createAction<ItemDTO>("items/ADD_ITEM");
 
 export const updateItem = createAction<Partial<ItemDTO>>("items/UPDATE_ITEM");
 
-export const removeItem = createAction("items/REMOVE_ITEM", (id) => {
+export const removeItem = createAction("items/REMOVE_ITEM", (id: string) => {
   return {
     payload: {
       id,

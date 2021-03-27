@@ -1,5 +1,9 @@
 import configureMockStore from "redux-mock-store";
 import {
+  setItems,
+  addItem,
+  updateItem,
+  removeItem,
   doAddItem,
   doRemoveItem,
   doUpdateItem,
@@ -7,11 +11,12 @@ import {
   getSortedItems,
   itemsReducer,
 } from "./items";
-import { getItemSample } from "../tests-utils";
+import {
+  getItemSample,
+  TestableItemsService,
+  getStoreStateMock,
+} from "src/tests-utils";
 import thunk from "redux-thunk";
-import { ItemsService } from "../services/items/ItemsService";
-
-jest.mock("../services/items/ItemsService");
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares);
@@ -21,7 +26,7 @@ describe("Selectors", () => {
     // TODO add more tests
     test("When item with price, then return item with float price", () => {
       const item = getItemSample({ price: 100 });
-      const state = { items: { [item.id]: item } };
+      const state = getStoreStateMock({ items: { [item.id]: item } });
 
       const result = getItem(state, item.id);
 
@@ -30,7 +35,7 @@ describe("Selectors", () => {
 
     test("When item have discount, then return  float newPrice base on discount", () => {
       const item = getItemSample({ price: 100, discount: 10 });
-      const state = { items: { [item.id]: item } };
+      const state = getStoreStateMock({ items: { [item.id]: item } });
 
       const result = getItem(state, item.id);
 
@@ -39,11 +44,11 @@ describe("Selectors", () => {
 
     test("When item not have discount, then return 0 newPrice", () => {
       const item = getItemSample({ price: 100, discount: 0 });
-      const state = { items: { [item.id]: item } };
+      const state = getStoreStateMock({ items: { [item.id]: item } });
 
       const result = getItem(state, item.id);
 
-      expect(result.newPrice).toBe(0);
+      expect(result.newPrice).toBeFalsy();
     });
   });
 
@@ -51,7 +56,9 @@ describe("Selectors", () => {
     test("When state has items, then return sorted array by updatedAt", () => {
       const item1 = getItemSample({ id: "1", updatedAt: 1 });
       const item2 = getItemSample({ id: "2", updatedAt: 2 });
-      const state = { items: { [item1.id]: item1, [item2.id]: item2 } };
+      const state = getStoreStateMock({
+        items: { [item1.id]: item1, [item2.id]: item2 },
+      });
       const result = getSortedItems(state);
 
       expect(result[0].id).toBe(item2.id);
@@ -59,7 +66,10 @@ describe("Selectors", () => {
     });
 
     test("When state empty, then return empty array", () => {
-      const result = getSortedItems({});
+      const state = getStoreStateMock({
+        items: {},
+      });
+      const result = getSortedItems(state);
 
       expect(result).toEqual(expect.any(Array));
     });
@@ -72,7 +82,7 @@ describe("Reducer", () => {
     const item2 = getItemSample();
     const items = [item1, item2];
 
-    const action = { type: SET_ITEMS, payload: items };
+    const action = setItems(items);
 
     const result = itemsReducer({}, action);
 
@@ -82,7 +92,7 @@ describe("Reducer", () => {
 
   test("When ADD_ITEM, then add new item", () => {
     const item = getItemSample();
-    const action = { type: ADD_ITEM, payload: item };
+    const action = addItem(item);
 
     const result = itemsReducer({}, action);
 
@@ -92,7 +102,7 @@ describe("Reducer", () => {
   test("When UPDATE_ITEM, then update exist item", () => {
     const item = getItemSample({ price: 10 });
     const newPrice = 20;
-    const action = { type: UPDATE_ITEM, payload: { ...item, price: newPrice } };
+    const action = updateItem({ ...item, price: newPrice });
 
     const result = itemsReducer({ [item.id]: item }, action);
 
@@ -101,8 +111,7 @@ describe("Reducer", () => {
 
   test("When REMOVE_ITEM, then remove existing item", () => {
     const item = getItemSample();
-
-    const action = { type: REMOVE_ITEM, payload: { id: item.id } };
+    const action = removeItem(item.id);
 
     const result = itemsReducer({ [item.id]: item }, action);
 
@@ -112,11 +121,11 @@ describe("Reducer", () => {
 
 describe("Action creators", () => {
   test("When call doAddItem, then pass service call result to particular action", async () => {
-    const itemsService = new ItemsService();
+    const itemsService = new TestableItemsService();
     const store = mockStore({ services: { itemsService } });
     const item = getItemSample();
     jest.spyOn(itemsService, "addItem").mockResolvedValueOnce(item);
-    const expectedActions = [{ type: ADD_ITEM, payload: item }];
+    const expectedActions = [addItem(item)];
 
     await store.dispatch(doAddItem(item));
 
@@ -125,8 +134,10 @@ describe("Action creators", () => {
 
   test("When call doRemoveItem, then call particular action", async () => {
     const itemId = "11";
-    const store = mockStore({ services: { itemsService: new ItemsService() } });
-    const expectedActions = [{ type: REMOVE_ITEM, payload: { id: itemId } }];
+    const store = mockStore({
+      services: { itemsService: new TestableItemsService() },
+    });
+    const expectedActions = [removeItem(itemId)];
 
     await store.dispatch(doRemoveItem(itemId));
 
@@ -134,11 +145,11 @@ describe("Action creators", () => {
   });
 
   test("When call doUpdateItem, then pass service call result to particular action", async () => {
-    const itemsService = new ItemsService();
+    const itemsService = new TestableItemsService();
     const store = mockStore({ services: { itemsService } });
     const item = getItemSample();
     jest.spyOn(itemsService, "updateItem").mockResolvedValueOnce(item);
-    const expectedActions = [{ type: UPDATE_ITEM, payload: item }];
+    const expectedActions = [updateItem(item)];
 
     await store.dispatch(doUpdateItem(item));
 
