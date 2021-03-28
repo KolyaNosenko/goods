@@ -11,18 +11,18 @@ import {
   itemsReducer,
 } from "./items";
 import {
-  getItemSample,
+  getItemDTO,
   TestableItemsService,
   getStoreStateMock,
   createStore,
-  createStoreContext,
+  createStoreContext, getNewItemDTO, getNewItemMock, getUpdateItemMock
 } from "src/tests-utils";
 
 describe("Selectors", () => {
   describe("getItem", () => {
     // TODO add more tests
     test("When item with price, then return item with float price", () => {
-      const item = getItemSample({ price: 100 });
+      const item = getItemDTO({ price: 100 });
       const state = getStoreStateMock({ items: { [item.id]: item } });
 
       const result = getItem(state, item.id);
@@ -31,7 +31,7 @@ describe("Selectors", () => {
     });
 
     test("When item have discount, then return  float newPrice base on discount", () => {
-      const item = getItemSample({ price: 100, discount: 10 });
+      const item = getItemDTO({ price: 100, discount: 10 });
       const state = getStoreStateMock({ items: { [item.id]: item } });
 
       const result = getItem(state, item.id);
@@ -40,7 +40,7 @@ describe("Selectors", () => {
     });
 
     test("When item not have discount, then return 0 newPrice", () => {
-      const item = getItemSample({ price: 100, discount: 0 });
+      const item = getItemDTO({ price: 100, discount: 0 });
       const state = getStoreStateMock({ items: { [item.id]: item } });
 
       const result = getItem(state, item.id);
@@ -51,8 +51,8 @@ describe("Selectors", () => {
 
   describe("getSortedItems", () => {
     test("When state has items, then return sorted array by updatedAt", () => {
-      const item1 = getItemSample({ id: "1", updatedAt: 1 });
-      const item2 = getItemSample({ id: "2", updatedAt: 2 });
+      const item1 = getItemDTO({ id: "1", updatedAt: 1 });
+      const item2 = getItemDTO({ id: "2", updatedAt: 2 });
       const state = getStoreStateMock({
         items: { [item1.id]: item1, [item2.id]: item2 },
       });
@@ -75,8 +75,8 @@ describe("Selectors", () => {
 
 describe("Reducer", () => {
   test("When call setItems, then set items map to state", () => {
-    const item1 = getItemSample();
-    const item2 = getItemSample();
+    const item1 = getItemDTO();
+    const item2 = getItemDTO();
     const items = [item1, item2];
 
     const action = setItems(items);
@@ -88,7 +88,7 @@ describe("Reducer", () => {
   });
 
   test("When call addItem, then add new item to state", () => {
-    const item = getItemSample();
+    const item = getItemDTO();
     const action = addItem(item);
 
     const result = itemsReducer({}, action);
@@ -97,7 +97,7 @@ describe("Reducer", () => {
   });
 
   test("When call updateItem, then update exist item", () => {
-    const item = getItemSample({ price: 10 });
+    const item = getItemDTO({ price: 10 });
     const newPrice = 20;
     const action = updateItem({ ...item, price: newPrice });
 
@@ -107,7 +107,7 @@ describe("Reducer", () => {
   });
 
   test("When call removeItem, then remove existing item", () => {
-    const item = getItemSample();
+    const item = getItemDTO();
     const action = removeItem(item.id);
 
     const result = itemsReducer({ [item.id]: item }, action);
@@ -122,11 +122,12 @@ describe("Action creators", () => {
     const store = createStore({
       context: createStoreContext({ itemsService }),
     });
-    const item = getItemSample();
+    const newItem = getNewItemMock();
+    const item = getItemDTO();
     jest.spyOn(itemsService, "addItem").mockResolvedValueOnce(item);
     const expectedActions = [addItem(item)];
 
-    await store.dispatch(doAddItem(item));
+    await store.dispatch(doAddItem(newItem));
 
     expect(store.getActions()).toEqual(expectedActions);
   });
@@ -146,11 +147,12 @@ describe("Action creators", () => {
     const store = createStore({
       context: createStoreContext({ itemsService }),
     });
-    const item = getItemSample();
+    const itemForUpdate = getUpdateItemMock();
+    const item = getItemDTO();
     jest.spyOn(itemsService, "updateItem").mockResolvedValueOnce(item);
     const expectedActions = [updateItem(item)];
 
-    await store.dispatch(doUpdateItem(item));
+    await store.dispatch(doUpdateItem(itemForUpdate));
 
     expect(store.getActions()).toEqual(expectedActions);
   });

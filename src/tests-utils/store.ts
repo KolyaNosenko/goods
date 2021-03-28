@@ -2,7 +2,7 @@ import {
   ItemsState,
   UserState,
   StoreState,
-  ThunkExtraContext,
+  ThunkExtraContext, AppStore, StoreDispatch
 } from "src/store";
 import { TestableItemsService } from "./TestableItemsService";
 import { TestableUserService } from "./TestableUserService";
@@ -62,7 +62,7 @@ export function createStore(
 ) {
   const storeContext = createStoreContext(options.context);
   const middlewares = [thunk.withExtraArgument(storeContext)];
-  const mockStore = configureMockStore(middlewares);
+  const mockStore = configureMockStore<StoreState, StoreDispatch>(middlewares);
 
   return mockStore(getStoreStateMock(options.state));
 }
