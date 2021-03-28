@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import PropTypes from "prop-types";
 import { useFormik } from "formik";
 import FormControlInput from "src/components/FormControlInput";
 import FormControlText from "src/components/FormControlText";
@@ -117,10 +116,6 @@ const LoginForm = ({ onSubmit }: Props) => {
       </FormBody>
     </Form>
   );
-};
-
-LoginForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
 };
 
 export default LoginForm;
