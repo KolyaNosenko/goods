@@ -58,20 +58,14 @@ export function validateItem({
 
   return true;
 }
-
+// TODO change names
 export function convertPrice(price: number): string {
-  if (!price || typeof price !== "number") return "";
+  if (!price) return "";
   return Dinero({ amount: price, precision: 2 }).toFormat("0.00");
 }
 // TODO add tests
 export function calculateNewPrice(price: number, discount: number): string {
-  if (
-    !price ||
-    typeof price !== "number" ||
-    !discount ||
-    typeof discount !== "number"
-  )
-    return "";
+  if (!price || !discount) return "";
 
   const priceObj = Dinero({ amount: price, precision: 2 });
   const percentageObj = Dinero({ amount: price, precision: 2 }).percentage(

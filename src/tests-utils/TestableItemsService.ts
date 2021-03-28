@@ -16,7 +16,7 @@ export class TestableItemsService implements ItemsService {
   getItems(): Promise<Array<ItemDTO>> {
     return Promise.resolve([getItemDTO()]);
   }
-  isNewItemValid(item: any): boolean {
+  isNewItemValid(item: NewItemDTO): boolean {
     return true;
   }
   onItemAdded(callback: (item: ItemDTO) => void): void {}

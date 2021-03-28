@@ -9,5 +9,5 @@ export interface ItemsService {
   removeItem(itemId: string): Promise<void>;
   getItem(itemId: string): Promise<ItemDTO>;
   updateItem(updatedItem: UpdateItemDTO): Promise<ItemDTO>;
-  isNewItemValid(item: any): boolean;
+  isNewItemValid(item: NewItemDTO): boolean;
 }

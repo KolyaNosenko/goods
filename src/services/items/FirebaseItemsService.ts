@@ -178,7 +178,7 @@ export class FirebaseItemsService implements ItemsService {
     return await this.uploadImage("images/" + id, imgFile);
   }
   // TODO change this
-  isNewItemValid(item: any) {
+  isNewItemValid(item: NewItemDTO) {
     return validateItem(item);
   }
 }
