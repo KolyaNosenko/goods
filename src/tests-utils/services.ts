@@ -41,13 +41,15 @@ export function getUserDTO(options: Partial<UserDTO> = {}): UserDTO {
   };
 }
 
-export function getNewItemDTO(options: Partial<NewItemDTO>): NewItemDTO {
+export function getNewItemDTO(options: Partial<NewItemDTO> = {}): NewItemDTO {
   return {
     title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
-    price: 1,
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.",
+    price: 1000,
     image: IMAGE_URL,
+    discount: 15,
+    discountExpireAt: Number.MAX_VALUE,
     ...options,
   };
 }

@@ -1,5 +1,5 @@
 export interface ItemDTO {
-  description: string;
+  description?: string;
   discount?: number;
   discountExpireAt?: number;
   id: string;
@@ -11,7 +11,8 @@ export interface ItemDTO {
 
 export interface NewItemDTO {
   title: string;
-  description: string;
+  description?: string;
+  // TODO change to priceInCents
   price: number;
   image: string;
   discount?: number;

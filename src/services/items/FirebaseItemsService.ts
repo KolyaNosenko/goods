@@ -81,11 +81,9 @@ export class FirebaseItemsService implements ItemsService {
   }
 
   async addItem(item: NewItemDTO): Promise<ItemDTO> {
-    const isValid = await this.isNewItemValid(item);
     // TODO add more custom error
-
     // TODO add custom id realization
-    if (!isValid) throw new InvalidData("Invalid data");
+    if (!this.isNewItemValid(item)) throw new InvalidData("Invalid data");
 
     const ref = this.firebaseApp.database().ref("items").push();
     const itemId = ref.key;
@@ -143,9 +141,8 @@ export class FirebaseItemsService implements ItemsService {
   }
 
   async updateItem(updatedItem: UpdateItemDTO): Promise<ItemDTO> {
-    const isValid = await this.isNewItemValid(updatedItem);
-
-    if (!isValid) throw new InvalidData("Invalid data");
+    if (!this.isNewItemValid(updatedItem) || !updatedItem.id)
+      throw new InvalidData("Invalid data");
 
     const existingItem = await this.getItem(updatedItem.id);
     // TODO add clear type
@@ -181,8 +178,7 @@ export class FirebaseItemsService implements ItemsService {
     return await this.uploadImage("images/" + id, imgFile);
   }
   // TODO change this
-  async isNewItemValid(item: any) {
-    const errors = await validateItem(item);
-    return Object.values(errors).length === 0;
+  isNewItemValid(item: any) {
+    return validateItem(item);
   }
 }
