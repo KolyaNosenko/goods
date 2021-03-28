@@ -3,7 +3,6 @@ import {
   HeaderLoginIcon,
   HeaderLogo,
   HeaderLogoutIcon,
-  HeaderLogoWrapper,
   HeaderProfile,
   HeaderProfileIcon,
   HeaderProfileName,
@@ -28,7 +27,7 @@ const Header = ({ loginUser, logoutUser, user }: Props) => {
     <HeaderContainer>
       {isAuthenticated ? (
         <>
-          <HeaderProfile>
+          <HeaderProfile to="/">
             <HeaderProfileIcon />
             <HeaderProfileName>{email}</HeaderProfileName>
           </HeaderProfile>
@@ -41,9 +40,9 @@ const Header = ({ loginUser, logoutUser, user }: Props) => {
         </>
       ) : (
         <>
-          <HeaderLogoWrapper>
+          <HeaderProfile to="/">
             <HeaderLogo />
-          </HeaderLogoWrapper>
+          </HeaderProfile>
           <SecondaryButton startIcon={<HeaderLoginIcon />} onClick={loginUser}>
             Login
           </SecondaryButton>

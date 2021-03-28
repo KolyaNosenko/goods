@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 import { ReactComponent as ShopIcon } from "src/assets/icons/shop.svg";
 import { ReactComponent as LoginIcon } from "src/assets/icons/login.svg";
 import { ReactComponent as UserIcon } from "src/assets/icons/user.svg";
@@ -14,10 +15,6 @@ export const HeaderContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   background-color: var(--primary);
-`;
-
-export const HeaderLogoWrapper = styled.div`
-  margin-right: 15px;
 `;
 
 export const HeaderLogo = styled(ShopIcon)`
@@ -40,7 +37,7 @@ export const HeaderLogoutIcon = styled(LogoutIcon)`
   margin-right: 5px;
 `;
 
-export const HeaderProfile = styled.div`
+export const HeaderProfile = styled(Link)`
   display: inline-flex;
   align-items: center;
   margin-right: 15px;
