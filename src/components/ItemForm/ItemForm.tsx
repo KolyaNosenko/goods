@@ -22,18 +22,18 @@ import { PrimaryButton } from "../Button";
 import Spinner from "../Spinner";
 import { validateItem } from "./helpers";
 
-export interface ItemFormItem {
+export interface NewItem {
   title: string;
   description: string;
   price: string;
   image: string;
-  discount?: string;
-  discountExpireAt?: number;
+  discount: string;
+  discountExpireAt: number;
 }
 
-export interface Props extends Partial<ItemFormItem> {
+export interface Props extends Partial<NewItem> {
   headerTitle: string;
-  onSubmit: (item: ItemFormItem) => Promise<void>;
+  onSubmit: (item: NewItem) => Promise<void>;
 }
 
 const ItemForm = (props: Props) => {
@@ -53,7 +53,7 @@ const ItemForm = (props: Props) => {
     setFieldValue,
     values,
     isSubmitting,
-  } = useFormik<ItemFormItem>({
+  } = useFormik<NewItem>({
     initialValues: {
       title: props.title || "",
       description: props.description || "",
