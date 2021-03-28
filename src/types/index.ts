@@ -6,3 +6,7 @@ export interface NewItem {
   discount: string;
   discountExpireAt: number;
 }
+
+export interface UpdateItem extends NewItem {
+  id: string;
+}

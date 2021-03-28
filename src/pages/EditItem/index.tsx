@@ -3,7 +3,7 @@ import { RouteComponentProps, withRouter } from "react-router-dom";
 
 import EditItem from "./EditItem";
 import { doUpdateItem, getItem, StoreDispatch, StoreState } from "src/store";
-import { UpdateItemDTO } from "src/services/items";
+import { UpdateItem } from "src/types";
 
 const mapStateToProps = (
   state: StoreState,
@@ -17,7 +17,7 @@ const mapStateToProps = (
 
 const mapDispatchToProps = (dispatch: StoreDispatch) => {
   return {
-    editItem: async (item: UpdateItemDTO) => dispatch(doUpdateItem(item)),
+    editItem: async (item: UpdateItem) => dispatch(doUpdateItem(item)),
   };
 };
 

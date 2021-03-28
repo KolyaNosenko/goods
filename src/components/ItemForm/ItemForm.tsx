@@ -21,15 +21,7 @@ import FormControlDatePicker from "../FormControlDatePicker";
 import { PrimaryButton } from "../Button";
 import Spinner from "../Spinner";
 import { validateItem } from "./helpers";
-
-export interface NewItem {
-  title: string;
-  description: string;
-  price: string;
-  image: string;
-  discount: string;
-  discountExpireAt: number;
-}
+import { NewItem } from "src/types";
 
 export interface Props extends Partial<NewItem> {
   headerTitle: string;

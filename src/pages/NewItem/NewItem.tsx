@@ -21,7 +21,7 @@ export interface Props {
 const NewItem = (props: Props) => {
   const notify = useContext(NotificationContext);
   // TODO fix this
-  const onFormSubmit = async (item: any) => {
+  const onFormSubmit = async (item: NewItemType) => {
     try {
       await props.addItem(item);
       notify.success("New item successfully added");
