@@ -2,11 +2,12 @@ import {
   calculateNewPrice,
   convertPrice,
   ItemDTO,
-  NewItemDTO,
   UpdateItemDTO,
 } from "src/services/items";
 import { createAction, createReducer } from "@reduxjs/toolkit";
 import { StoreState, ThunkedAction } from "./types";
+import { normalizeItem } from "../utils";
+import { NewItem } from "../types";
 
 export interface Item extends Omit<ItemDTO, "price" | "discount"> {
   price: string;
@@ -52,11 +53,11 @@ export type ItemsActions =
   | ReturnType<typeof removeItem>
   | ReturnType<typeof setItems>;
 
-export const doAddItem = (item: NewItemDTO): ThunkedAction => {
+export const doAddItem = (item: NewItem): ThunkedAction => {
   return async function (dispatch, getState, context) {
     const { itemsService } = context;
-    const addedItem = await itemsService.addItem(item);
-
+    const normalizedItem = normalizeItem(item);
+    const addedItem = await itemsService.addItem(normalizedItem);
     return dispatch(addItem(addedItem));
   };
 };

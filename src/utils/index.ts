@@ -2,6 +2,8 @@ import isEqual from "lodash/isEqual";
 import transform from "lodash/transform";
 import isObject from "lodash/isObject";
 import dayjs from "dayjs";
+import { NewItem } from "../types";
+import { NewItemDTO } from "../services/items";
 
 export function getImageDimensionsByUrl(
   url: string
@@ -44,4 +46,39 @@ export function getDifferenceBetweenObjects(object: any, base: any) {
 
 export function formatDate(date: string | number, format = "DD MMM") {
   return dayjs(date).format(format);
+}
+
+function normalizePrice(price = "") {
+  const val = parseFloat(price.trim()) * 100;
+  return Number.isNaN(val) ? 0 : val;
+}
+
+function normalizeDiscount(discount = "") {
+  const val = parseInt(discount.trim());
+  return Number.isNaN(val) ? 0 : val;
+}
+
+export function normalizeItem({
+  title = "",
+  description = "",
+  price = "",
+  image = "",
+  discount = "",
+  discountExpireAt = 0,
+}: NewItem): NewItemDTO {
+  const normalizedTitle = title.trim();
+  const normalizedDescription = description.trim();
+  const normalizedPrice = normalizePrice(price);
+  const normalizedImage = image.trim();
+  const normalizedDiscount = normalizeDiscount(discount);
+
+  return {
+    title: normalizedTitle,
+    description: normalizedDescription,
+    price: normalizedPrice,
+    image: normalizedImage,
+    discount: normalizedDiscount,
+    discountExpireAt:
+      normalizedDiscount && normalizedDiscount > 0 ? discountExpireAt : 0,
+  };
 }

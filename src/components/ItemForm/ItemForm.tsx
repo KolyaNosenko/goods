@@ -60,7 +60,7 @@ const ItemForm = (props: Props) => {
       price: props.price || "",
       image: props.image || "",
       discount: props.discount || "",
-      discountExpireAt: props.discountExpireAt || 0,
+      discountExpireAt: props.discountExpireAt || Date.now(),
     },
     onSubmit: async (values) => {
       await props.onSubmit({

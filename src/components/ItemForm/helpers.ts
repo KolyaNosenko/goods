@@ -1,7 +1,6 @@
 import { getImageDimensionsByUrl } from "src/utils";
-// TODO change this
-// @ts-ignore
-import Dinero from "dinero.js";
+import { NewItem } from "src/types";
+import { NewItemDTO } from "../../services/items";
 
 export const MIN_TITLE = 20;
 export const MAX_TITLE = 60;
@@ -120,60 +119,4 @@ export async function validateItem({
   }
 
   return errors;
-}
-
-function normalizePrice(price = "") {
-  const val = parseFloat(price.trim()) * 100;
-  return Number.isNaN(val) ? 0 : val;
-}
-
-function normalizeDiscount(discount = "") {
-  const val = parseInt(discount.trim());
-  return Number.isNaN(val) ? 0 : val;
-}
-
-export function normalizeItem({
-  title = "",
-  description = "",
-  price = "",
-  image = "",
-  discount = "",
-  discountExpireAt = 0,
-}) {
-  const normalizedTitle = title.trim();
-  const normalizedDescription = description.trim();
-  const normalizedPrice = normalizePrice(price);
-  const normalizedImage = image.trim();
-  const normalizedDiscount = normalizeDiscount(discount);
-
-  return {
-    title: normalizedTitle,
-    description: normalizedDescription,
-    price: normalizedPrice,
-    image: normalizedImage,
-    discount: normalizedDiscount,
-    discountExpireAt: normalizedDiscount > 0 ? discountExpireAt : 0,
-  };
-}
-
-export function convertPrice(price: number): string {
-  if (!price || typeof price !== "number") return "";
-  return Dinero({ amount: price, precision: 2 }).toFormat("0.00");
-}
-// TODO add tests
-export function calculateNewPrice(price: number, discount: number): string {
-  if (
-    !price ||
-    typeof price !== "number" ||
-    !discount ||
-    typeof discount !== "number"
-  )
-    return "";
-
-  const priceObj = Dinero({ amount: price, precision: 2 });
-  const percentageObj = Dinero({ amount: price, precision: 2 }).percentage(
-    discount
-  );
-
-  return priceObj.subtract(percentageObj).toFormat("0.00");
 }

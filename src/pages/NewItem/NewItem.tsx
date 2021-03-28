@@ -3,7 +3,7 @@ import styled from "styled-components";
 import ItemForm from "src/components/ItemForm";
 import { NotificationContext } from "src/context/NotificationContext";
 import { InvalidData } from "src/errors";
-import { NewItemDTO } from "src/services/items";
+import { NewItem as NewItemType } from "src/types";
 
 const NewItemContainer = styled.div`
   padding: 20px;
@@ -15,7 +15,7 @@ const NewItemContainer = styled.div`
 `;
 
 export interface Props {
-  addItem: (item: NewItemDTO) => Promise<void>;
+  addItem: (item: NewItemType) => Promise<void>;
 }
 
 const NewItem = (props: Props) => {
