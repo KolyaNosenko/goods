@@ -1,28 +1,24 @@
 import { getImageDimensionsByUrl } from "src/utils";
-import { NewItem } from "src/types";
-import { NewItemDTO } from "../../services/items";
-
-export const MIN_TITLE = 20;
-export const MAX_TITLE = 60;
-export const MAX_DESCRIPTION = 200;
-export const MIN_PRICE = 100;
-export const MAX_PRICE = 9999999999;
-export const MAX_IMAGE_WIDTH = 4000;
-export const MAX_IMAGE_HEIGHT = 4000;
-export const MIN_IMAGE_WIDTH = 200;
-export const MIN_IMAGE_HEIGHT = 200;
-export const MIN_DISCOUNT = 10;
-export const MAX_DISCOUNT = 90;
+import {
+  MAX_DISCOUNT,
+  MAX_IMAGE_HEIGHT,
+  MIN_IMAGE_HEIGHT,
+  MIN_IMAGE_WIDTH,
+  MAX_DESCRIPTION,
+  MAX_IMAGE_WIDTH,
+  MAX_PRICE,
+  MAX_TITLE,
+  MIN_DISCOUNT,
+  MIN_PRICE,
+  MIN_TITLE,
+} from "src/services/items";
 
 function isTitleValid(title: string): boolean {
-  if (typeof title !== "string") return false;
   return title.length >= MIN_TITLE && title.length <= MAX_TITLE;
 }
 
 function isDescriptionValid(description: string): boolean {
-  return (
-    typeof description === "string" && description.length <= MAX_DESCRIPTION
-  );
+  return description.length <= MAX_DESCRIPTION;
 }
 
 function isPriceValid(price: string): boolean {
