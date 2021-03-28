@@ -6,11 +6,7 @@ import {
   NotificationContext,
   NotificationContextData,
 } from "src/context/NotificationContext";
-import {
-  getEmailSample,
-  getNotificationContextValue,
-  getPasswordSample,
-} from "src/tests-utils";
+import { getNotificationContextValue, EMAIL, PASSWORD } from "src/tests-utils";
 import { InvalidData } from "src/errors";
 
 function renderLoginPage(
@@ -41,8 +37,8 @@ describe("loginUser", () => {
     const emailInput = screen.getByLabelText(/email/i);
     const passInput = screen.getByLabelText(/password/i);
 
-    userEvent.type(emailInput, getEmailSample());
-    userEvent.type(passInput, getPasswordSample());
+    userEvent.type(emailInput, EMAIL);
+    userEvent.type(passInput, PASSWORD);
     userEvent.click(screen.getByRole("button"));
 
     await waitFor(() =>
@@ -62,8 +58,8 @@ describe("loginUser", () => {
     const emailInput = screen.getByLabelText(/email/i);
     const passInput = screen.getByLabelText(/password/i);
 
-    userEvent.type(emailInput, getEmailSample());
-    userEvent.type(passInput, getPasswordSample());
+    userEvent.type(emailInput, EMAIL);
+    userEvent.type(passInput, PASSWORD);
     userEvent.click(screen.getByRole("button"));
 
     await waitFor(() =>
@@ -81,8 +77,8 @@ describe("loginUser", () => {
     const emailInput = screen.getByLabelText(/email/i);
     const passInput = screen.getByLabelText(/password/i);
 
-    userEvent.type(emailInput, getEmailSample());
-    userEvent.type(passInput, getPasswordSample());
+    userEvent.type(emailInput, EMAIL);
+    userEvent.type(passInput, PASSWORD);
     userEvent.click(screen.getByRole("button"));
 
     await waitFor(() =>
