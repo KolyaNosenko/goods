@@ -1,5 +1,11 @@
 import { getDifferenceBetweenObjects, objectUrlToBlob } from "src/utils";
-import { validateItem } from "./helpers";
+import {
+  isDescriptionValid,
+  isDiscountExpireAtValid,
+  isDiscountValid,
+  isPriceValid,
+  isTitleValid,
+} from "./helpers";
 import { InvalidData } from "src/errors";
 import firebase from "firebase/app";
 import { ItemDTO, NewItemDTO, UpdateItemDTO } from "./types";
@@ -91,6 +97,7 @@ export class FirebaseItemsService implements ItemsService {
     if (!itemId) throw Error("Failed to add item");
 
     const imgFile = await objectUrlToBlob(item.image);
+    // TODO check image size
     const imgUrl = await this.uploadImage("images/" + itemId, imgFile);
 
     const finalItem: ItemDTO = {
@@ -177,8 +184,28 @@ export class FirebaseItemsService implements ItemsService {
     const imgFile = await objectUrlToBlob(image);
     return await this.uploadImage("images/" + id, imgFile);
   }
-  // TODO change this
-  isNewItemValid(item: NewItemDTO) {
-    return validateItem(item);
+
+  isNewItemValid({
+    title,
+    description,
+    price,
+    image,
+    discount = 0,
+    discountExpireAt = 0,
+  }: NewItemDTO): boolean {
+    if (!title || !isTitleValid(title)) return false;
+
+    if (description && !isDescriptionValid(description)) return false;
+
+    if (!price || !isPriceValid(price)) return false;
+
+    if (!image) return false;
+
+    if (price && discount && !isDiscountValid(discount)) return false;
+
+    if (price && discount && !isDiscountExpireAtValid(discountExpireAt))
+      return false;
+
+    return true;
   }
 }
