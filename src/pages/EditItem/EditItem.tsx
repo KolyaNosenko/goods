@@ -52,7 +52,7 @@ const EditItem = ({ editItem, item }: Props) => {
         price={item.price}
         description={item.description}
         discountExpireAt={item.discountExpireAt}
-        discount={item.discount ? item.discount.toString() : ""}
+        discount={item.discount}
       />
     </EditItemContainer>
   );

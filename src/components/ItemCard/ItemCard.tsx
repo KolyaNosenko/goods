@@ -41,10 +41,7 @@ const ItemCard = ({
   isActionsVisible,
 }: Props) => {
   const isDiscounted =
-    discount &&
-    discount > 0 &&
-    discountExpireAt &&
-    discountExpireAt > Date.now();
+    discount && discountExpireAt && discountExpireAt > Date.now();
 
   return (
     // TODO image loading indicator

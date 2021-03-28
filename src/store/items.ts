@@ -8,9 +8,10 @@ import {
 import { createAction, createReducer } from "@reduxjs/toolkit";
 import { StoreState, ThunkedAction } from "./types";
 
-export interface Item extends Omit<ItemDTO, "price"> {
+export interface Item extends Omit<ItemDTO, "price" | "discount"> {
   price: string;
   newPrice: string;
+  discount: string;
 }
 
 export const getItem = (state: StoreState, itemId: string): Item => {
@@ -18,6 +19,7 @@ export const getItem = (state: StoreState, itemId: string): Item => {
 
   return {
     ...item,
+    discount: item.discount ? item.discount.toString() : "",
     price: convertPrice(item.price),
     newPrice: calculateNewPrice(item.price, item.discount || 0),
   };
