@@ -16,14 +16,13 @@ const EditItemContainer = styled.div`
 `;
 
 export interface Props {
-  // TODO move to type
   item: Item;
   editItem: (item: UpdateItem) => Promise<void>;
 }
 
 const EditItem = ({ editItem, item }: Props) => {
   const notify = useContext(NotificationContext);
-  // TODO change this
+
   const onSubmit = async (editedItem: NewItem) => {
     try {
       await editItem({

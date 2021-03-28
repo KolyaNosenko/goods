@@ -10,7 +10,6 @@ import {
 import { SecondaryButton } from "../Button";
 
 export interface Props {
-  // TODO change this
   user: {
     isAuthenticated: boolean;
     email: string;

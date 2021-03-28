@@ -34,7 +34,6 @@ const ItemCard = ({
   price,
   newPrice,
   discount,
-  // TODO think about this
   discountExpireAt = 0,
   onEdit,
   onRemove,

@@ -62,7 +62,6 @@ export async function validateItem({
   discount = "",
   discountExpireAt = 0,
 }) {
-  // TODO create smth more beauty
   const errors: {
     title?: string;
     description?: string;

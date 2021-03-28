@@ -1,4 +1,4 @@
-// TODO change this
+// TODO add types
 // @ts-ignore
 import Dinero from "dinero.js";
 import { NewItemDTO } from "./types";
@@ -35,7 +35,6 @@ export function isDiscountExpireAtValid(expireAt: number): boolean {
   return expireAt > Date.now();
 }
 
-// TODO change names
 export function convertPrice(price: number): string {
   if (!price) return "";
   return Dinero({ amount: price, precision: 2 }).toFormat("0.00");

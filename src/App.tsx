@@ -36,7 +36,6 @@ const AppLoader = styled(Spinner)`
 function App() {
   const { isAppInitialized, appStore } = useInitializeApp();
 
-  // TODO add normal loader
   if (!isAppInitialized || !appStore)
     return (
       <AppContainer>

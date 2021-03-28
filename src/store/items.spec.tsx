@@ -15,7 +15,7 @@ import {
   TestableItemsService,
   getStoreStateMock,
   createStore,
-  createStoreContext, getNewItemDTO, getNewItemMock, getUpdateItemMock
+  createStoreContext, getNewItemMock, getUpdateItemMock
 } from "src/tests-utils";
 
 describe("Selectors", () => {

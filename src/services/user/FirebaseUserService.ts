@@ -31,7 +31,7 @@ export class FirebaseUserService implements UserService {
     const { user } = await this.firebaseApp
       .auth()
       .signInWithEmailAndPassword(email, password);
-    // TODO add
+
     if (!user) throw Error("User not found");
 
     const additionalData = await this.getAdditionalUserData(user.uid);

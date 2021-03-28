@@ -10,12 +10,10 @@ import {
   HomeToolbarButton,
 } from "./styled";
 import ItemCard from "src/components/ItemCard";
-// TODO move to context
 import { NotificationContext } from "src/context/NotificationContext";
 import { Item } from "src/store";
 
 export interface Props {
-  // TODO move to separate type
   items: Array<Item>;
   isAdmin?: boolean;
   removeItem: (id: string) => Promise<void>;
@@ -32,7 +30,6 @@ const Home = ({
 }: Props) => {
   const notify = useContext(NotificationContext);
   const onRemove = async (id: string) => {
-    // TODO add errors handling
     try {
       await removeItem(id);
       notify.success("Deleted successfully");

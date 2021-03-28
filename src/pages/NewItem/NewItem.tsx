@@ -20,7 +20,7 @@ export interface Props {
 
 const NewItem = (props: Props) => {
   const notify = useContext(NotificationContext);
-  // TODO fix this
+
   const onFormSubmit = async (item: NewItemType) => {
     try {
       await props.addItem(item);

@@ -53,7 +53,7 @@ export class FirebaseItemsService implements ItemsService {
       console.warn("Unknown snapshotData structure");
       return;
     }
-    // TODO add item
+
     const item = snapshotData.val() as ItemDTO;
     this.addItemListeners.forEach((listener) => {
       listener(item);
@@ -88,12 +88,11 @@ export class FirebaseItemsService implements ItemsService {
 
   async addItem(item: NewItemDTO): Promise<ItemDTO> {
     // TODO add more custom error
-    // TODO add custom id realization
     if (!this.isNewItemValid(item)) throw new InvalidData("Invalid data");
 
     const ref = this.firebaseApp.database().ref("items").push();
     const itemId = ref.key;
-    // TODO check this
+
     if (!itemId) throw Error("Failed to add item");
 
     const imgFile = await objectUrlToBlob(item.image);

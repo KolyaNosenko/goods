@@ -91,7 +91,6 @@ export const itemsReducer = createReducer(initialState, (builder) => {
       state[payload.id] = payload;
     })
     .addCase(updateItem, (state, { payload }) => {
-      // TODO think about this
       if (!payload.id || !state[payload.id]) return state;
 
       state[payload.id] = {

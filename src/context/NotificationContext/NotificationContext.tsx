@@ -8,7 +8,6 @@ export interface NotificationContextData {
 
 export const NotificationContext = React.createContext<NotificationContextData>(
   {
-    // TODO add all methods
     success: (message: string) => {},
     error: (message: string) => {},
     info: (message: string) => {},
